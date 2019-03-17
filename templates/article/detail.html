@@ -9,14 +9,36 @@
 
 <!-- 写入 base.html 中定义的 content -->
 {% block content %}
+    <script>
+        function confirm_delete() {
+            layer.open({
+                    title: "删除确认",
+                    content: "确认删除这篇文章吗？",
+                    yes: function (index, layero) {
+                        // 指定应当前往的 url
+                        location.href = '{% url "article:article_delete" article.id %}'
+                    },
 
+                }
+            )
+        }
+    </script>
     <!-- 文章详情 -->
     <div class="container">
         <div class="row">
             <!-- 标题及作者 -->
             <h1 class="col-12 mt-4 mb-4">{{ article.title }}</h1>
-            <div class="col-12 alert alert-success">作者：{{ article.author }}</div>
-            <a class="col-12 alert alert-success" href="{% url "article:article_delete" article.id %}">删除文章</a>
+            <div class="col-12 alert alert-success">作者：{{ article.author }}
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary">
+                        <a onclick="confirm_delete()">删除文章</a>
+                    </button>
+                    <button type="button" class="btn btn-secondary">
+                        <a href="{% url "article:article_update" article.id %}">编辑文章</a>
+                    </button>
+                </div>
+            </div>
+
 
             <!-- 文章正文 -->
             <div class="col-12">
