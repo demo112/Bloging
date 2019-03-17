@@ -16,13 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
 # 配置app的url
 urlpatterns += [
-path('article/', include('article.urls', namespace='article')),
+    path('article/', include('article.urls', namespace='article')),
+    path('err/', include('err.urls', namespace='err')),
 ]
