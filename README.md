@@ -78,3 +78,10 @@ $ pipenv lock
 ```cmd
 $ pipenv uninstall --all
 ```
+
+启动
+
+```cmd
+$ pipenv shell
+```
+
