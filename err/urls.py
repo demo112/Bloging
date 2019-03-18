@@ -11,5 +11,7 @@ app_name = 'err'
 urlpatterns = [
     # 目前还没有urls
     path('not_found_404/', views.err_404, name='err_404'),
+    path('wrong_method/', views.err_method, name='err_method'),
+    path('no_right/', views.err_no_right, name='err_no_right'),
 
 ]

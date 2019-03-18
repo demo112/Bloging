@@ -1,0 +1,21 @@
+<!-- extends表明此页面继承自 base.html 文件 -->
+{% extends "base.html" %}
+{% load staticfiles %}
+
+<!-- 写入 base.html 中定义的 title -->
+{% block title %}
+    404
+{% endblock title %}
+
+<!-- 写入 base.html 中定义的 content -->
+{% block content %}
+
+<!-- 文章详情 -->
+<div class="container">
+    <div class="row">
+        <h1 class="col-12 mt-4 mb-4">您的请求方式不是POST或GET，请检查请求内容</h1>
+        <h6 class="col-12 mt-4 mb-4"></h6>
+    </div>
+</div>
+
+{% endblock content %}

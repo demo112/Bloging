@@ -6,9 +6,8 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-pygments = "*"
+django = "==2.1.7"
 markdown = "*"
-django = "*"
 
 [requires]
 python_version = "3.5"

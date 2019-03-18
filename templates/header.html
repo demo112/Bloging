@@ -9,15 +9,49 @@
         <div>
             <ul class="navbar-nav">
                 <!-- 条目 -->
-{#                todo 添加更多入口#}
+                {# todo 添加更多入口 #}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'article:article_create' %}">写文章</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'article:article_list' %}">文章</a>
                 </li>
+                {% if user.is_authenticated %}
+                    <!-- 如果用户已经登录，则显示用户名下拉框 -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ user.username }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">个人空间</a>
+                            <a class="dropdown-item" href="{% url 'userprofile:userprofile_logout' %}">退出登录</a>
+                            <a class="dropdown-item" href="#">设置</a>
+                            {# todo 删除用户放在设置中更合适 #}
+                            <a class="dropdown-item" href="#" onclick="user_delete()">删除用户</a>
+                        </div>
+                    </li>
+                {% else %}
+                    <!-- 如果用户未登录，则显示 “登录” -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'userprofile:userprofile_login' %}">登录</a>
+                    </li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                    <script>
+                        function user_delete() {
+                            // 调用layer弹窗组件
+                            layer.open({
+                                title: "确认删除",
+                                content: "确认删除用户资料吗？",
+                                yes: function (index, layero) {
+                                    location.href = '{% url "userprofile:userprofile_delete" user.id %}'
+                                },
+                            })
+                        }
+                    </script>
+                {% endif %}
             </ul>
         </div>
-
     </div>
 </nav>
